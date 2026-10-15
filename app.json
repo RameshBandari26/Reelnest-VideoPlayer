@@ -1,0 +1,12 @@
+{
+  "expo": {
+    "extra": {
+      "eas": {
+        "projectId": "7a376e3c-ceb4-4451-b1a1-7f65b244a653"
+      }
+    },
+    "android": {
+      "package": "lumo.com"
+    }
+  }
+}
