@@ -13,6 +13,7 @@
     "@react-native-async-storage/async-storage": "*",
     "expo": "*",
     "expo-media-library": "*",
+    "expo-system-ui": "~57.0.4",
     "expo-video": "*",
     "react": "*",
     "react-native": "*"
