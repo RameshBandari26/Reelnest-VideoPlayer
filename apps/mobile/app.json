@@ -1,0 +1,15 @@
+{
+  "expo": {
+    "name": "Lumo",
+    "slug": "lumo-player",
+    "version": "0.1.0",
+    "orientation": "default",
+    "userInterfaceStyle": "dark",
+    "android": { "package": "app.lumo.player" },
+    "ios": { "bundleIdentifier": "app.lumo.player", "infoPlist": { "UIBackgroundModes": ["audio"] } },
+    "plugins": [
+      ["expo-media-library", { "photosPermission": "Lumo needs access to play your videos.", "granularPermissions": ["audio", "video"] }],
+      ["expo-video", { "supportsBackgroundPlayback": true, "supportsPictureInPicture": true }]
+    ]
+  }
+}

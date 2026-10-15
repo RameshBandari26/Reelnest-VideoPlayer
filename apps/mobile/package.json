@@ -1,0 +1,20 @@
+{
+  "name": "@lumo/mobile",
+  "version": "0.1.0",
+  "private": true,
+  "main": "index.js",
+  "scripts": {
+    "start": "expo start",
+    "android": "expo run:android",
+    "ios": "expo run:ios"
+  },
+  "dependencies": {
+    "@lumo/core": "*",
+    "@react-native-async-storage/async-storage": "*",
+    "expo": "*",
+    "expo-media-library": "*",
+    "expo-video": "*",
+    "react": "*",
+    "react-native": "*"
+  }
+}
