@@ -1,0 +1,6 @@
+{
+  "framework": null,
+  "installCommand": "npm install -w @lumo/web",
+  "buildCommand": "npm run build -w @lumo/web",
+  "outputDirectory": "apps/web/dist"
+}

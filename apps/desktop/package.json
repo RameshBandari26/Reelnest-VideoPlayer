@@ -11,17 +11,15 @@
     "start": "vite build && electron .",
     "dist": "vite build && electron-builder"
   },
-  "dependencies": {
-    "@lumo/core": "*",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1"
-  },
   "devDependencies": {
+    "@lumo/core": "*",
     "@vitejs/plugin-react": "^4.3.4",
     "concurrently": "^9.1.0",
     "cross-env": "^7.0.3",
-    "electron": "^33.2.0",
+    "electron": "33.4.11",
     "electron-builder": "^25.1.8",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
     "vite": "^5.4.11",
     "wait-on": "^8.0.1"
   },
@@ -37,7 +35,10 @@
     },
     "publish": [
       {
-        "provider": "github"
+        "provider": "github",
+        "owner": "RameshBandari26",
+        "repo": "Reelnest-VideoPlayer",
+        "releaseType": "draft"
       }
     ],
     "win": {
@@ -60,7 +61,9 @@
       "target": "AppImage",
       "artifactName": "Reelnest-linux.${ext}",
       "category": "AudioVideo"
-    }
+    },
+    "electronVersion": "33.4.11",
+    "npmRebuild": false
   },
   "description": "Reelnest video and music player",
   "author": "Reelnest"
