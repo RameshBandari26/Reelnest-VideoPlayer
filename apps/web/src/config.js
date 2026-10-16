@@ -1,7 +1,7 @@
 // ONE setting to change before launch: your GitHub repository, as "username/repo".
 // The download buttons point at the newest GitHub Release of that repository.
 // Leave it empty and the buttons show "coming soon".
-export const REPO = ""; // e.g. 'ramesh/Reelnest'
+export const REPO = "RameshBandari26/Reelnest-VideoPlayer"; // e.g. 'ramesh/Reelnest'
 
 const base = REPO ? `https://github.com/${REPO}/releases/latest/download/` : "";
 
