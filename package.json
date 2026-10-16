@@ -2,15 +2,12 @@
   "name": "lumo",
   "private": true,
   "version": "0.1.0",
-  "workspaces": [
-    "apps/*",
-    "packages/*"
-  ],
+  "workspaces": ["apps/desktop", "apps/web", "packages/*"],
   "scripts": {
     "test": "npm test -w @lumo/core && npm test -w @lumo/desktop",
     "desktop": "npm run dev -w @lumo/desktop",
     "web": "npm run dev -w @lumo/web",
     "build:web": "npm run build -w @lumo/web",
-    "mobile": "npm run start -w @lumo/mobile"
+    "mobile": "npm --prefix apps/mobile run start"
   }
 }
