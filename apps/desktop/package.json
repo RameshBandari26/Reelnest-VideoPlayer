@@ -26,12 +26,42 @@
     "wait-on": "^8.0.1"
   },
   "build": {
-    "appId": "app.lumo.player",
-    "productName": "Lumo",
-    "files": ["dist/**", "electron/**"],
-    "directories": { "output": "release" },
-    "win": { "target": "nsis" },
-    "mac": { "target": "dmg" },
-    "linux": { "target": "AppImage" }
-  }
+    "appId": "app.reelnest.player",
+    "productName": "Reelnest",
+    "files": [
+      "dist/**",
+      "electron/**"
+    ],
+    "directories": {
+      "output": "release"
+    },
+    "publish": [
+      {
+        "provider": "github"
+      }
+    ],
+    "win": {
+      "target": "nsis",
+      "artifactName": "Reelnest-Setup.${ext}"
+    },
+    "mac": {
+      "target": [
+        {
+          "target": "dmg",
+          "arch": [
+            "universal"
+          ]
+        }
+      ],
+      "artifactName": "Reelnest-mac.${ext}",
+      "category": "public.app-category.video"
+    },
+    "linux": {
+      "target": "AppImage",
+      "artifactName": "Reelnest-linux.${ext}",
+      "category": "AudioVideo"
+    }
+  },
+  "description": "Reelnest video and music player",
+  "author": "Reelnest"
 }

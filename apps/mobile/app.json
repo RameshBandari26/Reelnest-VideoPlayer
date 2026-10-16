@@ -1,22 +1,18 @@
 {
   "expo": {
-    "name": "Lumo",
+    "name": "Reelnest",
     "slug": "lumo-player",
     "version": "0.1.0",
     "orientation": "default",
     "userInterfaceStyle": "dark",
+    "icon": "./assets/icon.png",
     "android": {
-      "package": "app.lumo.player",
-      "permissions": [
-        "android.permission.READ_EXTERNAL_STORAGE",
-        "android.permission.WRITE_EXTERNAL_STORAGE",
-        "android.permission.READ_MEDIA_VISUAL_USER_SELECTED",
-        "android.permission.READ_MEDIA_AUDIO",
-        "android.permission.READ_MEDIA_VIDEO"
-      ]
+      "package": "app.reelnest.player",
+      "versionCode": 1,
+      "adaptiveIcon": { "foregroundImage": "./assets/adaptive-icon.png", "backgroundColor": "#241c58" }
     },
     "ios": {
-      "bundleIdentifier": "app.lumo.player",
+      "bundleIdentifier": "app.reelnest.player",
       "infoPlist": {
         "UIBackgroundModes": [
           "audio"
@@ -27,7 +23,7 @@
       [
         "expo-media-library",
         {
-          "photosPermission": "Lumo needs access to play your videos.",
+          "photosPermission": "Reelnest needs access to play your videos.",
           "granularPermissions": [
             "audio",
             "video"
@@ -41,11 +37,6 @@
           "supportsPictureInPicture": true
         }
       ]
-    ],
-    "extra": {
-      "eas": {
-        "projectId": "7b98a35d-4c8e-42cc-8162-dfee9cab4cbd"
-      }
-    }
+    ]
   }
 }

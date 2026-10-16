@@ -324,3 +324,64 @@ select {
     transition: none !important;
   }
 }
+
+.endcard {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  display: grid;
+  place-items: center;
+  background: rgba(8, 6, 14, 0.72);
+  padding: 16px;
+  cursor: default;
+}
+.endbox {
+  background: var(--surface);
+  border-radius: 16px;
+  padding: 24px 28px;
+  width: min(460px, 100%);
+  text-align: center;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+}
+.endbox h3 {
+  margin: 0 0 10px;
+  font-size: 18px;
+  overflow-wrap: anywhere;
+}
+.endbox p {
+  margin: 0 0 12px;
+  color: #d9d4ec;
+}
+.count {
+  font-size: 28px;
+  color: var(--warm);
+  font-variant-numeric: tabular-nums;
+}
+.bar {
+  height: 6px;
+  background: var(--surface-2);
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 18px;
+}
+.bar i {
+  display: block;
+  height: 100%;
+  background: var(--warm);
+  transition: width 1s linear;
+}
+.endbtns {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.endbtns .primary {
+  background: var(--accent);
+  color: #101326;
+}
+@media (prefers-reduced-motion: reduce) {
+  .bar i {
+    transition: none;
+  }
+}

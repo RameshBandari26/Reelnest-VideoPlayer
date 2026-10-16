@@ -47,7 +47,7 @@ function createWindow() {
   const win = new BrowserWindow({
     width: 1180, height: 740, minWidth: 820, minHeight: 520,
     backgroundColor: '#15121f',
-    title: 'Lumo',
+    title: 'Reelnest',
     autoHideMenuBar: true,
     webPreferences: { preload: path.join(__dirname, 'preload.cjs'), contextIsolation: true, nodeIntegration: false },
   });

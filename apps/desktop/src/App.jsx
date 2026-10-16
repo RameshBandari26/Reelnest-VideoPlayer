@@ -86,7 +86,7 @@ export default function App({ extra }) {
             <circle cx="16" cy="16" r="14" fill="none" stroke="var(--accent)" strokeWidth="2.5" />
             <path d="M12.5 9.5v13l10-6.5z" fill="var(--warm)" />
           </svg>
-          <h1>Lumo</h1>
+          <h1>Reelnest</h1>
         </header>
         <div className="actions">
           <button onClick={openFiles}>Open files</button>

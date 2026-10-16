@@ -88,7 +88,7 @@ export default function App() {
   return (
     <SafeAreaView style={s.screen}>
       <StatusBar barStyle="light-content" />
-      <Text style={s.h1}>Lumo</Text>
+      <Text style={s.h1}>Reelnest</Text>
       <TextInput style={s.search} placeholder="Search your library" placeholderTextColor="#9a93b5" value={query} onChangeText={setQuery} />
       <View style={s.chips}>
         {[['all', 'All'], ['video', 'Videos'], ['audio', 'Music']].map(([k, label]) => (
@@ -102,7 +102,7 @@ export default function App() {
       </View>
       {status === 'loading' && <Text style={s.empty}>Scanning your media...</Text>}
       {status === 'error' && <Text style={s.empty}>Could not read your media library: {error}</Text>}
-      {status === 'denied' && <Text style={s.empty}>Lumo can't see your media. Allow access to audio and video in Settings, then reopen the app.</Text>}
+      {status === 'denied' && <Text style={s.empty}>Reelnest can't see your media. Allow access to audio and video in Settings, then reopen the app.</Text>}
       <FlatList
         data={visible}
         keyExtractor={(i) => i.path}

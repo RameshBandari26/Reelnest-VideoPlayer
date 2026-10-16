@@ -1,0 +1,30 @@
+# Builds the desktop installers for Windows, macOS and Linux and attaches them to a GitHub Release.
+# Trigger: push a tag that matches the desktop version, e.g.  git tag v0.1.0 && git push origin v0.1.0
+name: Release desktop apps
+
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+
+jobs:
+  desktop:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest, macos-latest, ubuntu-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm install -w @lumo/core -w @lumo/desktop
+      - run: npm run build -w @lumo/desktop
+      - run: npx electron-builder --publish always
+        working-directory: apps/desktop
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CSC_IDENTITY_AUTO_DISCOVERY: 'false' # unsigned builds for now

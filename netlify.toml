@@ -1,0 +1,7 @@
+# Deploys the web app (apps/web) to Netlify. Cloudflare Pages / Vercel use the same two commands.
+[build]
+  command = "npm install -w @lumo/web && npm run build -w @lumo/web"
+  publish = "apps/web/dist"
+
+[build.environment]
+  NODE_VERSION = "22"

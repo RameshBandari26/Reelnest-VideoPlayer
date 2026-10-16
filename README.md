@@ -1,4 +1,4 @@
-# Lumo
+# Reelnest
 
 A local video and music player for desktop (Electron) and mobile (Expo / React Native).
 Shared logic lives in `packages/core`, so playlists, sorting, resume rules and subtitle handling behave the same everywhere.
