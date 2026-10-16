@@ -1,6 +1,8 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { FlatList, Pressable, SafeAreaView, StatusBar, StyleSheet, Text, TextInput, View } from 'react-native';
-import * as MediaLibrary from 'expo-media-library';
+// Newer expo-media-library versions moved the classic asset-listing API to /legacy;
+// importing it from the main entry point throws at runtime.
+import * as MediaLibrary from 'expo-media-library/legacy';
 import { useVideoPlayer, VideoView } from 'expo-video';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Queue, filterItems, formatTime, shouldResume, sortItems, titleFromFile } from '@lumo/core';
@@ -13,27 +15,41 @@ export default function App() {
   const [query, setQuery] = useState('');
   const [kind, setKind] = useState('all');
   const [sortBy, setSortBy] = useState('mtime');
-  const [status, setStatus] = useState('loading'); // loading | denied | ready
+  const [status, setStatus] = useState('loading'); // loading | denied | ready | error
+  const [error, setError] = useState('');
   const [resume, setResume] = useState({});
   const [, bump] = useState(0);
   const queue = useRef(new Queue()).current;
 
   useEffect(() => {
     (async () => {
-      const saved = await AsyncStorage.getItem(RESUME_KEY);
-      if (saved) setResume(JSON.parse(saved));
-      const perm = await MediaLibrary.requestPermissionsAsync(false, ['audio', 'video']);
-      if (!perm.granted) return setStatus('denied');
-      const page = await MediaLibrary.getAssetsAsync({
-        first: 1000,
-        mediaType: [MediaLibrary.MediaType.video, MediaLibrary.MediaType.audio],
-        sortBy: MediaLibrary.SortBy.modificationTime,
-      });
-      setItems(page.assets.map((a) => ({
-        path: a.id, uri: a.uri, name: a.filename, kind: a.mediaType === 'video' ? 'video' : 'audio',
-        duration: a.duration, mtime: a.modificationTime, size: 0,
-      })));
-      setStatus('ready');
+      try {
+        const saved = await AsyncStorage.getItem(RESUME_KEY);
+        if (saved) setResume(JSON.parse(saved));
+        const perm = await MediaLibrary.requestPermissionsAsync(false, ['audio', 'video']);
+        if (!perm.granted) return setStatus('denied');
+        const assets = [];
+        let after;
+        for (let page = 0; page < 10; page += 1) { // up to 10,000 files
+          const res = await MediaLibrary.getAssetsAsync({
+            first: 1000,
+            after,
+            mediaType: [MediaLibrary.MediaType.video, MediaLibrary.MediaType.audio],
+            sortBy: MediaLibrary.SortBy.modificationTime,
+          });
+          assets.push(...res.assets);
+          if (!res.hasNextPage) break;
+          after = res.endCursor;
+        }
+        setItems(assets.map((a) => ({
+          path: a.id, uri: a.uri, name: a.filename, kind: a.mediaType === 'video' ? 'video' : 'audio',
+          duration: a.duration, mtime: a.modificationTime, size: 0,
+        })));
+        setStatus('ready');
+      } catch (e) {
+        setError(String(e?.message ?? e));
+        setStatus('error');
+      }
     })();
   }, []);
 
@@ -84,6 +100,8 @@ export default function App() {
           <Text style={s.chipText}>{sortBy === 'mtime' ? 'Newest' : 'Name'}</Text>
         </Pressable>
       </View>
+      {status === 'loading' && <Text style={s.empty}>Scanning your media...</Text>}
+      {status === 'error' && <Text style={s.empty}>Could not read your media library: {error}</Text>}
       {status === 'denied' && <Text style={s.empty}>Lumo can't see your media. Allow access to audio and video in Settings, then reopen the app.</Text>}
       <FlatList
         data={visible}
